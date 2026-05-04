@@ -1,7 +1,5 @@
 # Pinnio
 
-## 📌 Deskripsi Project
-
 **Pinnio** adalah aplikasi social media berbasis web yang ditujukan untuk kalangan mahasiswa. Platform ini memungkinkan pengguna untuk mengunggah, berbagi, dan menikmati berbagai meme yang relevan dengan kehidupan perkuliahan, sehingga menciptakan ruang hiburan sekaligus interaksi sosial yang ringan dan menyenangkan.
 
 ## 👥 Contributors
