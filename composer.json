@@ -1,16 +1,28 @@
 {
-    "name": "evanalifian/php-boilerplate",
-    "description": "A starter template to build website using native PHP.",
+    "name": "evanalifian/pinnio",
+    "description": "Aplikasi social media berbasi web untuk mengunggah meme untuk kalangan mahasiswa.",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "App\\PHPBoilerplate\\": "src/"
+            "App\\Pinnio\\": "src/"
         }
     },
     "authors": [
         {
             "name": "evanalifian",
             "email": "evanalifian@gmal.com"
+        },
+        {
+            "name": "Muhammad Ali Murtadho"
+        },
+        {
+            "name": "Mohammad Zaenal Abidin"
+        },
+        {
+            "name": "Tsabita Qalbi"
+        },
+        {
+            "name": "Ailsa Ratimaya Anindya"
         }
     ],
     "require": {

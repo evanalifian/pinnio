@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PHPBoilerplate\Repository;
+namespace App\Pinnio\Repository;
 
 class SignupRepository extends UserRepository
 {

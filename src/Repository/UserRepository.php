@@ -1,9 +1,9 @@
 <?php
 
-namespace App\PHPBoilerplate\Repository;
+namespace App\Pinnio\Repository;
 
-use App\PHPBoilerplate\Model\UserModel;
-use App\PHPBoilerplate\Model\SignupModel;
+use App\Pinnio\Model\UserModel;
+use App\Pinnio\Model\SignupModel;
 
 class UserRepository
 {

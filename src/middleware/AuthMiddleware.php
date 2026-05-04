@@ -1,8 +1,8 @@
 <?php
 
-namespace App\PHPBoilerplate\Middleware;
+namespace App\Pinnio\Middleware;
 
-use App\PHPBoilerplate\Config\View;
+use App\Pinnio\Config\View;
 
 class AuthMiddleware
 {

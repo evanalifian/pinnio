@@ -1,13 +1,13 @@
 <?php
 
-namespace App\PHPBoilerplate\Controller;
+namespace App\Pinnio\Controller;
 
-use App\PHPBoilerplate\Config\View;
-use App\PHPBoilerplate\Config\Database;
-use App\PHPBoilerplate\Model\SignupModel;
-use App\PHPBoilerplate\Repository\UserRepository;
-use App\PHPBoilerplate\Service\SignupService;
-use App\PHPBoilerplate\Exception\ValidationException;
+use App\Pinnio\Config\View;
+use App\Pinnio\Config\Database;
+use App\Pinnio\Model\SignupModel;
+use App\Pinnio\Repository\UserRepository;
+use App\Pinnio\Service\SignupService;
+use App\Pinnio\Exception\ValidationException;
 
 class SignupController
 {

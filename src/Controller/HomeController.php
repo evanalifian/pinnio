@@ -1,8 +1,8 @@
 <?php
 
-namespace App\PHPBoilerplate\Controller;
+namespace App\Pinnio\Controller;
 
-use App\PHPBoilerplate\Config\View;
+use App\Pinnio\Config\View;
 
 class HomeController
 {

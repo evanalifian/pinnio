@@ -1,11 +1,11 @@
 <?php
 
-use App\PHPBoilerplate\Config\Router;
-use App\PHPBoilerplate\Controller\AuthController;
-use App\PHPBoilerplate\Controller\HomeController;
-use App\PHPBoilerplate\Controller\SignupController;
-use App\PHPBoilerplate\Controller\UserController;
-use App\PHPBoilerplate\Middleware\AuthMiddleware;
+use App\Pinnio\Config\Router;
+use App\Pinnio\Controller\AuthController;
+use App\Pinnio\Controller\HomeController;
+use App\Pinnio\Controller\SignupController;
+use App\Pinnio\Controller\UserController;
+use App\Pinnio\Middleware\AuthMiddleware;
 
 require_once __DIR__ . "/vendor/autoload.php";
 

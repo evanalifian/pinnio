@@ -1,13 +1,13 @@
 <?php
 
-namespace App\PHPBoilerplate\Controller;
+namespace App\Pinnio\Controller;
 
-use App\PHPBoilerplate\Config\Database;
-use App\PHPBoilerplate\Config\View;
-use App\PHPBoilerplate\Exception\ValidationException;
-use App\PHPBoilerplate\Model\UserModel;
-use App\PHPBoilerplate\Repository\UserRepository;
-use App\PHPBoilerplate\Service\UserService;
+use App\Pinnio\Config\Database;
+use App\Pinnio\Config\View;
+use App\Pinnio\Exception\ValidationException;
+use App\Pinnio\Model\UserModel;
+use App\Pinnio\Repository\UserRepository;
+use App\Pinnio\Service\UserService;
 
 class UserController
 {

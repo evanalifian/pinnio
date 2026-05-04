@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\PHPBoilerplate\Model;
+namespace App\Pinnio\Model;
 
 class UserModel
 {

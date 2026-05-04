@@ -1,10 +1,10 @@
 <?php
 
-namespace App\PHPBoilerplate\Service;
+namespace App\Pinnio\Service;
 
-use App\PHPBoilerplate\Exception\ValidationException;
-use App\PHPBoilerplate\Model\UserModel;
-use App\PHPBoilerplate\Repository\UserRepository;
+use App\Pinnio\Exception\ValidationException;
+use App\Pinnio\Model\UserModel;
+use App\Pinnio\Repository\UserRepository;
 
 class UserService
 {

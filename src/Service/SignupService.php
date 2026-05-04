@@ -1,10 +1,10 @@
 <?php
 
-namespace App\PHPBoilerplate\Service;
+namespace App\Pinnio\Service;
 
-use App\PHPBoilerplate\Model\SignupModel;
-use App\PHPBoilerplate\Repository\UserRepository;
-use App\PHPBoilerplate\Exception\ValidationException;
+use App\Pinnio\Model\SignupModel;
+use App\Pinnio\Repository\UserRepository;
+use App\Pinnio\Exception\ValidationException;
 
 class SignupService
 {
