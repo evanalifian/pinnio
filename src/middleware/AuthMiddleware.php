@@ -11,7 +11,7 @@ class AuthMiddleware
     session_start();
 
     if (isset($_SESSION["auth"])) {
-      View::redirect("/account");
+      View::redirect("/home");
     }
   }
 

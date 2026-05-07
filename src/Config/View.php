@@ -11,6 +11,13 @@ class View
     require_once __DIR__ . "/../View/footer.php";
   }
 
+  public static function app(string $src_path, array $data = []): void
+  {
+    require_once __DIR__ . "/../View/app/header.php";
+    require_once __DIR__ . "/../View/app/$src_path.php";
+    require_once __DIR__ . "/../View/app/footer.php";
+  }
+
   public static function notFound(): void
   {
     require_once __DIR__ . "/../View/header.php";

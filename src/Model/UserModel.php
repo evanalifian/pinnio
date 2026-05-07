@@ -5,7 +5,11 @@ namespace App\Pinnio\Model;
 
 class UserModel
 {
-  public string $name;
+  public int $user_id;
   public string $username;
+  public string $email;
   public string $password;
+  public string $role;
+  public string $bio;
+  public string $profile_picture;
 }

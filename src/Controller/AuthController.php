@@ -25,7 +25,10 @@ class AuthController
 
   public function page(): void
   {
-    View::render("auth/login");
+    View::render("login", [
+      "title" => "Log in",
+      "style" => "login.css"
+    ]);
   }
 
   public function auth(): void
@@ -35,9 +38,11 @@ class AuthController
       self::$authModel->password = $_POST["password"];
 
       self::$authService->auth(self::$authModel);
-      View::redirect("/account");
+      View::redirect("/home");
     } catch (ValidationException $e) {
-      View::render("auth/login", [
+      View::render("login", [
+        "title" => "Log in",
+        "style" => "login.css",
         "error_message" => $e->getMessage()
       ]);
     }

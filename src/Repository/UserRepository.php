@@ -30,8 +30,8 @@ class UserRepository
 
   public function save(SignupModel $signupModel): \PDOStatement
   {
-    $statement = self::$connDB->prepare("INSERT INTO users (name, username, password) VALUES (?, ?, ?)");
-    $statement->execute([$signupModel->name, $signupModel->username, $signupModel->password]);
+    $statement = self::$connDB->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+    $statement->execute([$signupModel->username, $signupModel->email, $signupModel->password]);
     return $statement;
   }
 

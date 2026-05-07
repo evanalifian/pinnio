@@ -25,20 +25,25 @@ class SignupController
 
   public function page(): void
   {
-    View::render("auth/signup");
+    View::render("signup", [
+      "title" => "Sign up",
+      "style" => "signup.css"
+    ]);
   }
 
   public function save(): void
   {
     try {
-      self::$signupModel->name = $_POST["name"];
       self::$signupModel->username = $_POST["username"];
+      self::$signupModel->email = $_POST["email"];
       self::$signupModel->password = $_POST["password"];
 
       self::$signupService->save(self::$signupModel);
       View::redirect("/login");
     } catch (ValidationException $e) {
-      View::render("auth/signup", [
+      View::render("signup", [
+        "title" => "Sign up",
+        "style" => "signup.css",
         "error_message" => $e->getMessage()
       ]);
     }
