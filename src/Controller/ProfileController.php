@@ -9,7 +9,7 @@ use App\Pinnio\Model\UserModel;
 use App\Pinnio\Repository\UserRepository;
 use App\Pinnio\Service\UserService;
 
-class UserController
+class ProfileController
 {
   private static UserModel $userModel;
   private static UserService $userService;
@@ -25,7 +25,11 @@ class UserController
 
   public function page(): void
   {
-    View::render("account");
+    View::app("account", [
+      "title" => "Profil — PinThread",
+      "style" => "profile.css",
+      "script" => "profile.js"
+    ]);
   }
 
   public function update(): void
