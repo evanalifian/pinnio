@@ -32,7 +32,7 @@
           <button class="btn btn-pin w-100 mb-3" onclick="openModal('composeModal')">
             <i class="bi bi-pen me-2"></i>Thread Baru
           </button>
-          <a href="profile.html" class="sidebar-user">
+          <a href="/profile" class="sidebar-user">
             <div
               style="width:38px;height:38px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">
               🙂</div>

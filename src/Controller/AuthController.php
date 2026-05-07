@@ -27,7 +27,8 @@ class AuthController
   {
     View::render("login", [
       "title" => "Log in",
-      "style" => "login.css"
+      "style" => "login.css",
+      "script" => "login.js"
     ]);
   }
 
@@ -43,6 +44,7 @@ class AuthController
       View::render("login", [
         "title" => "Log in",
         "style" => "login.css",
+        "script" => "login.js",
         "error_message" => $e->getMessage()
       ]);
     }

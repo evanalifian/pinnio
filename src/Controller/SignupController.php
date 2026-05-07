@@ -27,7 +27,8 @@ class SignupController
   {
     View::render("signup", [
       "title" => "Sign up",
-      "style" => "signup.css"
+      "style" => "signup.css",
+      "script" => "signup.js"
     ]);
   }
 
@@ -44,6 +45,7 @@ class SignupController
       View::render("signup", [
         "title" => "Sign up",
         "style" => "signup.css",
+        "script" => "signup.js",
         "error_message" => $e->getMessage()
       ]);
     }
