@@ -16,7 +16,7 @@ class UserRepository
 
   public function findByID(int $userID): \PDOStatement
   {
-    $statement = self::$connDB->prepare("SELECT * FROM users WHERE id = ?");
+    $statement = self::$connDB->prepare("SELECT * FROM users WHERE user_id = ?");
     $statement->execute([$userID]);
     return $statement;
   }

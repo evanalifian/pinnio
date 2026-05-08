@@ -23,10 +23,10 @@
         <div class="sidebar-logo"><i class="bi bi-pin-angle-fill" style="color:var(--pin-yellow)"></i>
           Pin<span>Thread</span></div>
         <ul class="sidebar-nav">
-          <li><a href="home.html" class="active"><span class="nav-icon"><i class="bi bi-house-fill"></i></span> Home</a>
+          <li><a href="/home" class="active"><span class="nav-icon"><i class="bi bi-house-fill"></i></span> Home</a>
           </li>
-          <li><a href="explore.html"><span class="nav-icon"><i class="bi bi-compass"></i></span> Explore</a></li>
-          <li><a href="profile.html"><span class="nav-icon"><i class="bi bi-person"></i></span> Profil</a></li>
+          <li><a href="/explore"><span class="nav-icon"><i class="bi bi-compass"></i></span> Explore</a></li>
+          <li><a href="/profile"><span class="nav-icon"><i class="bi bi-person"></i></span> Profil</a></li>
         </ul>
         <div class="sidebar-footer">
           <button class="btn btn-pin w-100 mb-3" onclick="openModal('composeModal')">
@@ -37,7 +37,11 @@
               style="width:38px;height:38px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">
               🙂</div>
             <div class="sidebar-user-info">
-              <div class="name">Anya Kartika</div>
+              <?php if (isset($data["user"]["name"]) && strlen($data["user"]["name"]) !== 0): ?>
+                <div class="name"><?= $data["user"]["name"] ?></div>
+              <?php else: ?>
+                <div class="name">Your profile</div>
+              <?php endif ?>
               <div class="handle">@anya.k</div>
             </div>
             <i class="bi bi-three-dots" style="color:var(--pin-muted)"></i>

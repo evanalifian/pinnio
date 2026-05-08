@@ -15,6 +15,28 @@ class UserService
     self::$userRepository = $userRepository;
   }
 
+  public function getUserById(int $userID): array
+  {
+    $result = self::$userRepository->findByID($userID)->fetch();
+
+    if (!$result) {
+      throw new ValidationException("User does not match");
+    }
+
+    return $result;
+  }
+
+  public function getUserByUsername(string $username): array
+  {
+    $result = self::$userRepository->findByUsername($username)->fetch();
+
+    if (!$result) {
+      throw new ValidationException("User does not match");
+    }
+
+    return $result;
+  }
+
   public function update(UserModel $userModel, int $userID): void
   {
     $model = $userModel;

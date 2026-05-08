@@ -31,7 +31,11 @@ class AuthService
       throw new ValidationException("Password incorrect");
     }
 
-    $_SESSION["auth"] = $result;
+    $_SESSION["auth"] = [
+      "user_id" => $result["user_id"],
+      "username" => $result["username"],
+      "email" => $result["email"]
+    ];
   }
 
   private static function authValidation(AuthModel $authModel): void

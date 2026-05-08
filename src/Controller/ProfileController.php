@@ -25,10 +25,12 @@ class ProfileController
 
   public function page(): void
   {
-    View::app("account", [
+    $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
+    View::app("profile", [
       "title" => "Profil — PinThread",
       "style" => "profile.css",
-      "script" => "profile.js"
+      "script" => "profile.js",
+      "user" => $user
     ]);
   }
 
@@ -38,7 +40,7 @@ class ProfileController
       self::$userModel->name = $_POST["name"];
       self::$userModel->username = $_POST["username"];
 
-      self::$userService->update(self::$userModel, $_SESSION['auth']["id"]);
+      self::$userService->update(self::$userModel, $_SESSION['auth']["user_id"]);
       View::redirect("/account");
     } catch (ValidationException $e) {
       View::render("account", [
@@ -50,7 +52,7 @@ class ProfileController
   public function delete(): void
   {
     try {
-      self::$userService->delete($_SESSION['auth']["id"]);
+      self::$userService->delete($_SESSION['auth']["user_id"]);
       View::redirect("/");
     } catch (ValidationException $e) {
       View::render("account", [

@@ -8,7 +8,7 @@
           <div class="d-flex align-items-center gap-3">
             <a href="home.html" class="btn-pin-ghost p-1"><i class="bi bi-arrow-left"></i></a>
             <div>
-              <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:16px;">Anya Kartika</div>
+              <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:16px;"><?= $data["user"]["name"] ? $data["user"]["name"] : $data["user"]["username"] ?></div>
               <div style="color:var(--pin-muted);font-size:12px;">328 thread</div>
             </div>
           </div>
@@ -32,26 +32,18 @@
               <button class="btn btn-pin-outline btn-sm" onclick="openModal('editProfileModal')">
                 <i class="bi bi-pencil me-1"></i>Edit Profil
               </button>
-              <button class="btn btn-pin-outline btn-sm">
-                <i class="bi bi-share"></i>
-              </button>
+              <a href="/logout" class="btn btn-pin-outline btn-sm">
+                <i class="bi bi-box-arrow-right me-1"></i>Keluar
+              </a>
             </div>
           </div>
 
           <div style="padding:16px 0 0;">
-            <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:22px;">Anya Kartika</div>
-            <div style="color:var(--pin-muted);font-size:14px;margin-bottom:12px;">@anya.k <span
-                class="pin-badge ms-2">Creator</span></div>
-            <p style="font-size:14px;line-height:1.65;max-width:480px;margin-bottom:12px;">
-              UI/UX Designer & Coffee Enthusiast ☕<br>
-              Berbagi tentang desain, produktivitas, dan hal-hal random yang menarik.<br>
-              📍 Jakarta, Indonesia
-            </p>
-            <div class="d-flex gap-3 mb-2" style="font-size:13px;color:var(--pin-muted);">
-              <span><i class="bi bi-link-45deg"></i> <a href="#"
-                  style="color:var(--pin-yellow);">anyakartika.design</a></span>
-              <span><i class="bi bi-calendar3"></i> Bergabung Maret 2024</span>
-            </div>
+            <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:22px;"><?= $data["user"]["name"] ? $data["user"]["name"] : $data["user"]["username"] ?></div>
+            <div style="color:var(--pin-muted);font-size:14px;margin-bottom:12px;">@<?= $data["user"]["username"] ?></div>
+            <?php if ($data["user"]["bio"]): ?>
+              <p style="font-size:14px;line-height:1.65;max-width:480px;margin-bottom:12px;"><?= $data["user"]["bio"] ?></p>
+            <?php endif ?>
           </div>
 
           <div class="profile-stats">
@@ -65,19 +57,14 @@
             </div>
             <div class="profile-stat">
               <span class="num">328</span>
-              <span class="label">Thread</span>
-            </div>
-            <div class="profile-stat">
-              <span class="num">14.2K</span>
-              <span class="label">Suka</span>
+              <span class="label">Postingan</span>
             </div>
           </div>
         </div>
 
         <!-- Tabs -->
         <div class="pin-tabs">
-          <button class="pin-tab active" onclick="switchTab(this)">Thread</button>
-          <button class="pin-tab" onclick="switchTab(this)">Balasan</button>
+          <button class="pin-tab active" onclick="switchTab(this)">Postingan</button>
           <button class="pin-tab" onclick="switchTab(this)">Media</button>
           <button class="pin-tab" onclick="switchTab(this)">Suka</button>
         </div>
