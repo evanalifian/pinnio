@@ -4,7 +4,3 @@ function switchTab(el) {
     .forEach((t) => t.classList.remove("active"));
   el.classList.add("active");
 }
-function saveProfile() {
-  closeModal("editProfileModal");
-  showToast("Profil berhasil diperbarui!", "success");
-}

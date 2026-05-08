@@ -37,13 +37,14 @@ class ProfileController
   public function update(): void
   {
     try {
-      self::$userModel->name = $_POST["name"];
       self::$userModel->username = $_POST["username"];
+      self::$userModel->name = $_POST["name"];
+      self::$userModel->bio = $_POST["bio"];
 
       self::$userService->update(self::$userModel, $_SESSION['auth']["user_id"]);
-      View::redirect("/account");
+      View::redirect("/profile");
     } catch (ValidationException $e) {
-      View::render("account", [
+      View::render("profile", [
         "error_message" => $e->getMessage()
       ]);
     }
@@ -55,7 +56,7 @@ class ProfileController
       self::$userService->delete($_SESSION['auth']["user_id"]);
       View::redirect("/");
     } catch (ValidationException $e) {
-      View::render("account", [
+      View::render("profile", [
         "error_message" => $e->getMessage()
       ]);
     }

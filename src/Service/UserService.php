@@ -51,8 +51,10 @@ class UserService
 
     self::$userRepository->update($model, $userID);
 
-    $_SESSION["auth"]["name"] = $model->name;
-    $_SESSION["auth"]["username"] = $model->username;
+    $_SESSION["auth"] = [
+      "user_id" => $result["user_id"],
+      "email" => $result["email"]
+    ];
   }
 
   private static function updateValidation(UserModel $userModel): void

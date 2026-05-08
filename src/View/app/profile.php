@@ -130,27 +130,23 @@
 
 <!-- Edit Profile Modal -->
 <div class="pin-modal-overlay" id="editProfileModal">
-  <div class="pin-modal">
+  <form action="/profile/update" method="POST" class="pin-modal">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <button onclick="closeModal('editProfileModal')" class="btn-pin-ghost p-1"><i class="bi bi-x-lg"></i></button>
       <h6 style="font-family:'Syne',sans-serif;font-weight:700;margin:0;">Edit Profil</h6>
-      <button class="btn btn-pin btn-sm" onclick="saveProfile()">Simpan</button>
+      <button type="submit" class="btn btn-pin btn-sm">Simpan</button>
     </div>
     <div class="mb-3">
-      <label class="form-label-pin">Nama</label>
-      <input type="text" class="pin-input" value="Anya Kartika">
+      <label for="username" class="form-label-pin">Username</label>
+      <input type="text" name="username" id="username" class="pin-input" value="<?= $data["user"]["username"] ?>">
     </div>
     <div class="mb-3">
-      <label class="form-label-pin">Bio</label>
-      <textarea class="pin-input" rows="3">UI/UX Designer & Coffee Enthusiast ☕</textarea>
+      <label for="name" class="form-label-pin">Nama</label>
+      <input type="text" name="name" id="name" class="pin-input" value="<?= $data["user"]["name"] ?>">
     </div>
     <div class="mb-3">
-      <label class="form-label-pin">Website</label>
-      <input type="url" class="pin-input" value="anyakartika.design">
+      <label for="bio" class="form-label-pin">Bio</label>
+      <textarea class="pin-input" name="bio" id="bio" rows="3"><?= $data["user"]["bio"] ?></textarea>
     </div>
-    <div>
-      <label class="form-label-pin">Lokasi</label>
-      <input type="text" class="pin-input" value="Jakarta, Indonesia">
-    </div>
-  </div>
+  </form>
 </div>

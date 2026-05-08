@@ -37,14 +37,14 @@ class UserRepository
 
   public function update(UserModel $userModel, int $userID): \PDOStatement
   {
-    $statement = self::$connDB->prepare("UPDATE users SET name = ?, username = ? WHERE id = ?");
-    $statement->execute([$userModel->name, $userModel->username, $userID]);
+    $statement = self::$connDB->prepare("UPDATE users SET name = ?, username = ?, bio = ? WHERE user_id = ?");
+    $statement->execute([$userModel->name, $userModel->username, $userModel->bio, $userID]);
     return $statement;
   }
 
   public function delete(int $userID): \PDOStatement
   {
-    $statement = self::$connDB->prepare("DELETE FROM users WHERE id = ?");
+    $statement = self::$connDB->prepare("DELETE FROM users WHERE user_id = ?");
     $statement->execute([$userID]);
     return $statement;
   }

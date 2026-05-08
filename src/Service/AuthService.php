@@ -33,7 +33,6 @@ class AuthService
 
     $_SESSION["auth"] = [
       "user_id" => $result["user_id"],
-      "username" => $result["username"],
       "email" => $result["email"]
     ];
   }
