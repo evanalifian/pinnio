@@ -15,7 +15,12 @@ class MemeService {
 
     public function createMeme(MemeModel $memeModel, string $file_tmp, string $file_name): bool
     {
-        move_uploaded_file($file_tmp, __DIR__ . "/../../public/uploads/meme_img/" . $file_name);
+        if (!empty($file_tmp)) {
+            move_uploaded_file($file_tmp, __DIR__ . "/../../public/uploads/meme_img/" . $file_name);
+        } else {
+            $memeModel->image_path = null;
+        }
+        
         return self::$memeRepository->saveMeme($memeModel);
     }
 

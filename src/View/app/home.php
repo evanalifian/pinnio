@@ -37,8 +37,8 @@
                   <div class="flex-grow-1 pb-2">
                     <div class="d-flex align-items-center justify-content-between mb-1">
                       <div>
-                        <span style="font-weight:700;font-size:14px;">Anya Kartika</span>
-                        <span style="color:var(--pin-muted);font-size:13px;margin-left:6px;">@<?= $meme['username'] ?> · <?= $meme['created_at'] ?></span>
+                        <span style="font-weight:700;font-size:14px;"><?= $meme['username'] ?></span>
+                        <span style="color:var(--pin-muted);font-size:13px;margin-left:6px;"><?= $meme['created_at'] ?></span>
                       </div>
                       <button class="btn-pin-ghost p-1" onclick="event.stopPropagation()"><i
                           class="bi bi-three-dots"></i></button>
