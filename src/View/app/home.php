@@ -16,28 +16,6 @@
       </div>
 
       <div class="feed-col pt-2">
-        <!-- Compose -->
-        <div class="compose-box">
-          <div class="d-flex gap-3 align-items-start">
-            <div
-              style="width:42px;height:42px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">
-              🙂</div>
-            <div class="flex-grow-1">
-              <textarea class="pin-input mb-3" placeholder="Apa yang kamu pikirkan?" rows="2"
-                id="composeText"></textarea>
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex gap-1">
-                  <button class="btn-pin-ghost" data-tooltip="Foto"><i class="bi bi-image"></i></button>
-                  <button class="btn-pin-ghost" data-tooltip="GIF"><i class="bi bi-file-gif"></i></button>
-                  <button class="btn-pin-ghost" data-tooltip="Polling"><i class="bi bi-bar-chart-line"></i></button>
-                  <button class="btn-pin-ghost" data-tooltip="Lokasi"><i class="bi bi-geo-alt"></i></button>
-                </div>
-                <button class="btn btn-pin btn-sm" onclick="postThread()">Post</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!-- Feed Items -->
         <div id="feedContainer">
           <!-- Post 1 -->

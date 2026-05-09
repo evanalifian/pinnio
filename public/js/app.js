@@ -73,8 +73,19 @@ function showToast(msg, type = "default") {
     document.body.appendChild(container);
   }
   const toast = document.createElement("div");
-  const bg = type === "success" ? "var(--pin-yellow)" : "var(--pin-card)";
-  const color = type === "success" ? "var(--pin-dark)" : "var(--pin-white)";
+  
+  let bg, color;
+  if (type === "success") {
+    bg = "var(--pin-yellow)";
+    color = "var(--pin-dark)";
+  } else if (type === "error") {
+    bg = "#ff4d6d";
+    color = "var(--pin-white)";
+  } else {
+    bg = "var(--pin-card)";
+    color = "var(--pin-white)";
+  }
+  
   toast.style.cssText = `background:${bg};color:${color};padding:12px 20px;border-radius:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;border:1px solid var(--pin-border);animation:fadeUp .3s ease;box-shadow:0 8px 24px rgba(0,0,0,0.3);`;
   toast.textContent = msg;
   container.appendChild(toast);
