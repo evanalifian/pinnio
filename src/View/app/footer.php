@@ -13,7 +13,7 @@
         style="width:42px;height:42px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">
         🙂</div>
       <div class="flex-grow-1">
-        <div style="font-weight:600;font-size:14px;margin-bottom:8px;">anya.k</div>
+        <div style="font-weight:600;font-size:14px;margin-bottom:8px;"><?= $data["user"]["username"] ?></div>
         <textarea class="pin-input" placeholder="Apa yang kamu pikirkan?" rows="4" id="modalComposeText"></textarea>
 
         <!-- Image Preview Area -->
@@ -22,8 +22,6 @@
             <img id="imagePreview" style="width:100%;height:auto;max-height:300px;object-fit:cover;display:block;" />
             <button onclick="clearImagePreview()" class="btn-close-preview" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);border:none;width:28px;height:28px;border-radius:50%;color:var(--pin-white);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;"><i class="bi bi-x-lg"></i></button>
           </div>
-          <!-- Image Caption Field -->
-          <input type="text" class="pin-input" placeholder="Tambahkan caption untuk gambar..." id="imageCaption" style="margin-top:12px;" />
         </div>
 
         <!-- Hidden File Input -->
@@ -31,8 +29,6 @@
 
         <div class="d-flex gap-2 mt-3">
           <button type="button" class="btn-pin-ghost" onclick="document.getElementById('imageInput').click()"><i class="bi bi-image"></i></button>
-          <button type="button" class="btn-pin-ghost"><i class="bi bi-file-gif"></i></button>
-          <button type="button" class="btn-pin-ghost"><i class="bi bi-geo-alt"></i></button>
         </div>
       </div>
     </div>
