@@ -2,11 +2,11 @@
 
 <!-- Compose Modal -->
 <div class="pin-modal-overlay" id="composeModal">
-  <div class="pin-modal">
+  <form action="/create-meme" method="POST" enctype="multipart/form-data" class="pin-modal">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <button onclick="closeModal('composeModal')" class="btn-pin-ghost p-1"><i class="bi bi-x-lg"></i></button>
       <h6 style="font-family:'Syne',sans-serif;font-weight:700;margin:0;">Thread Baru</h6>
-      <button class="btn btn-pin btn-sm" onclick="postThread()">Post</button>
+      <button class="btn btn-pin btn-sm">Post</button>
     </div>
     <div class="d-flex gap-3">
       <div
@@ -14,7 +14,7 @@
         🙂</div>
       <div class="flex-grow-1">
         <div style="font-weight:600;font-size:14px;margin-bottom:8px;"><?= $data["user"]["username"] ?></div>
-        <textarea class="pin-input" placeholder="Apa yang kamu pikirkan?" rows="4" id="modalComposeText"></textarea>
+        <textarea class="pin-input" name="caption" id="caption" placeholder="Apa yang kamu pikirkan?" rows="4" id="modalComposeText"></textarea>
 
         <!-- Image Preview Area -->
         <div id="imagePreviewContainer" style="display:none;margin-top:16px;">
@@ -25,14 +25,14 @@
         </div>
 
         <!-- Hidden File Input -->
-        <input type="file" id="imageInput" accept="image/*" style="display:none;" onchange="handleImageSelect(event)" />
+        <input type="file" id="imageInput" name="meme_img" id="meme_img" accept="image/*" style="display:none;" onchange="handleImageSelect(event)" />
 
         <div class="d-flex gap-2 mt-3">
           <button type="button" class="btn-pin-ghost" onclick="document.getElementById('imageInput').click()"><i class="bi bi-image"></i></button>
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
 
 <script src="public/js/bootstrap.bundle.min.js"></script>
