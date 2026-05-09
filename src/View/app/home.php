@@ -18,11 +18,14 @@
       <div class="feed-col pt-2">
         <!-- Feed Items -->
         <div id="feedContainer">
-          <?php if (empty($data["memes"])): ?>
+          <?php if (!isset($data["memes"]) || empty($data["memes"])): ?>
             <div class="d-flex flex-column align-items-center justify-content-center py-5" style="min-height:300px;">
               <div style="font-size:48px;margin-bottom:16px;">📭</div>
               <h6 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--pin-white);margin-bottom:8px;">Belum ada thread</h6>
               <p style="color:var(--pin-muted);text-align:center;margin-bottom:24px;">Jadilah yang pertama memposting thread menarik!</p>
+              <button class="btn btn-pin" onclick="openModal('composeModal')">
+                <i class="bi bi-pen me-2"></i>Buat Thread Pertama
+              </button>
             </div>
           <?php else: ?>
             <?php foreach ($data["memes"] as $meme): ?>

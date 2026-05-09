@@ -70,59 +70,45 @@
         </div>
 
         <!-- Posts -->
-        <article class="thread-item fade-up">
-          <div class="d-flex gap-3">
-            <div
-              style="width:44px;height:44px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">
-              🙂</div>
-            <div class="flex-grow-1">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <div><span style="font-weight:700;font-size:14px;">Anya Kartika</span> <span
-                    style="color:var(--pin-muted);font-size:13px;">@anya.k · 2m</span></div>
-                <button class="btn-pin-ghost p-1"><i class="bi bi-three-dots"></i></button>
-              </div>
-              <p style="font-size:15px;margin-bottom:12px;">Pagi yang sempurna dengan secangkir kopi ☕ dan playlist
-                lo-fi. Produktivitas hari ini bakal on fire! 🔥</p>
-              <div class="thread-actions">
-                <button class="thread-action-btn liked" data-action="like"><i class="bi bi-heart-fill"></i><span
-                    class="action-count">142</span></button>
-                <button class="thread-action-btn"><i class="bi bi-chat"></i><span
-                    class="action-count">28</span></button>
-                <button class="thread-action-btn"><i class="bi bi-arrow-repeat"></i><span
-                    class="action-count">14</span></button>
-                <button class="thread-action-btn"><i class="bi bi-send"></i></button>
-              </div>
-            </div>
+        <?php if (!isset($data["memes"]) || empty($data["memes"])): ?>
+          <div class="d-flex flex-column align-items-center justify-content-center py-5" style="min-height:260px;">
+            <div style="font-size:48px;margin-bottom:16px;">📭</div>
+            <h6 style="font-family:'Syne',sans-serif;font-weight:700;color:var(--pin-white);margin-bottom:8px;">Belum ada postingan</h6>
+            <p style="color:var(--pin-muted);text-align:center;margin-bottom:24px;max-width:420px;">Kamu belum memiliki postingan. Mulai dengan membuat thread baru untuk berbagi cerita atau gambar.</p>
           </div>
-        </article>
-
-        <article class="thread-item fade-up" style="animation-delay:0.1s">
-          <div class="d-flex gap-3">
-            <div
-              style="width:44px;height:44px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">
-              🙂</div>
-            <div class="flex-grow-1">
-              <div class="d-flex justify-content-between align-items-center mb-1">
-                <div><span style="font-weight:700;font-size:14px;">Anya Kartika</span> <span
-                    style="color:var(--pin-muted);font-size:13px;">@anya.k · 1h</span></div>
-                <button class="btn-pin-ghost p-1"><i class="bi bi-three-dots"></i></button>
+        <?php else: ?>
+          <?php foreach ($data["memes"] as $meme): ?>
+            <article class="thread-item fade-up" onclick="window.location='thread.html'" style="animation-delay:0.05s">
+              <div class="d-flex gap-3">
+                <div
+                  style="width:44px;height:44px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">
+                  🙂</div>
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                    <div><span style="font-weight:700;font-size:14px;"><?= $data["user"]["name"] ? $data["user"]["name"] : $data["user"]["username"] ?></span> <span
+                        style="color:var(--pin-muted);font-size:13px;">@<?= $data["user"]["username"] ?> · <?= $meme['created_at'] ?></span></div>
+                    <button class="btn-pin-ghost p-1" onclick="event.stopPropagation()"><i class="bi bi-three-dots"></i></button>
+                  </div>
+                  <p style="font-size:15px;margin-bottom:12px;"><?= $meme['caption'] ?></p>
+                  <?php if (isset($meme['image_url']) && !empty($meme['image_url'])): ?>
+                    <div style="border-radius:12px;overflow:hidden;margin-bottom:12px;">
+                      <img src="<?= $meme['image_url'] ?>" alt="Meme image" style="width:100%;height:auto;max-height:400px;object-fit:cover;display:block;" />
+                    </div>
+                  <?php endif ?>
+                  <div class="thread-actions">
+                    <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span
+                        class="action-count"><?= $meme['likes'] ?? '0' ?></span></button>
+                    <button class="thread-action-btn"><i class="bi bi-chat"></i><span
+                        class="action-count"><?= $meme['comments'] ?? '0' ?></span></button>
+                    <button class="thread-action-btn"><i class="bi bi-arrow-repeat"></i><span
+                        class="action-count"><?= $meme['shares'] ?? '0' ?></span></button>
+                    <button class="thread-action-btn"><i class="bi bi-send"></i></button>
+                  </div>
+                </div>
               </div>
-              <p style="font-size:15px;margin-bottom:12px;">🧵 5 hal yang saya pelajari dari 1 tahun freelance sebagai
-                UI/UX Designer:<br><br>1. Rate kamu bukan hanya soal skill, tapi juga nilai yang kamu bawa ke
-                klien<br><br>2. Komunikasi > desain sempurna<br><br>3. ...</p>
-              <a href="thread.html" style="color:var(--pin-yellow);font-size:13px;">Baca selengkapnya →</a>
-              <div class="thread-actions mt-2">
-                <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span
-                    class="action-count">891</span></button>
-                <button class="thread-action-btn"><i class="bi bi-chat"></i><span
-                    class="action-count">124</span></button>
-                <button class="thread-action-btn"><i class="bi bi-arrow-repeat"></i><span
-                    class="action-count">302</span></button>
-                <button class="thread-action-btn"><i class="bi bi-send"></i></button>
-              </div>
-            </div>
-          </div>
-        </article>
+            </article>
+          <?php endforeach ?>
+        <?php endif ?>
       </div>
     </div>
   </div>
