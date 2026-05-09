@@ -36,7 +36,7 @@ class HomeController
     View::app("home", [
       "title" => "Home — PinThread",
       "user" => $user,
-      "script" => "home.js",
+      "script" => ["home.js"],
     ]);
   }
 }
