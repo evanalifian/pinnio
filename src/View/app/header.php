@@ -42,7 +42,7 @@
               <?php else: ?>
                 <div class="name">Your profile</div>
               <?php endif ?>
-              <div class="handle">@anya.k</div>
+              <div class="handle">@<?= $data["user"]["username"] ?></div>
             </div>
             <i class="bi bi-three-dots" style="color:var(--pin-muted)"></i>
           </a>

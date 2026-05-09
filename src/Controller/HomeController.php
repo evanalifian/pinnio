@@ -35,7 +35,8 @@ class HomeController
     $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
     View::app("home", [
       "title" => "Home — PinThread",
-      "user" => $user
+      "user" => $user,
+      "script" => "home.js",
     ]);
   }
 }
