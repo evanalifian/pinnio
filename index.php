@@ -39,6 +39,6 @@ Router::add("/login", "POST", fn() => $auth->auth(), fn() => AuthMiddleware::isA
 Router::add("/logout", "GET", fn() => $auth->logout(), fn() => AuthMiddleware::isNotAuth());
 
 
-Router::add("/create-meme", "POST", fn() => $meme->createMeme(), fn() => AuthMiddleware::isNotAuth());
+Router::add("/meme/create", "POST", fn() => $meme->createMeme(), fn() => AuthMiddleware::isNotAuth());
 
 Router::execute();

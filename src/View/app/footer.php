@@ -2,7 +2,7 @@
 
 <!-- Compose Modal -->
 <div class="pin-modal-overlay" id="composeModal">
-  <form action="/create-meme" method="POST" enctype="multipart/form-data" class="pin-modal">
+  <form action="/meme/create" method="POST" enctype="multipart/form-data" class="pin-modal">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <button onclick="closeModal('composeModal')" class="btn-pin-ghost p-1"><i class="bi bi-x-lg"></i></button>
       <h6 style="font-family:'Syne',sans-serif;font-weight:700;margin:0;">Thread Baru</h6>

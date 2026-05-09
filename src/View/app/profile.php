@@ -87,7 +87,14 @@
                   <div class="d-flex justify-content-between align-items-center mb-1">
                     <div><span style="font-weight:700;font-size:14px;"><?= $data["user"]["name"] ? $data["user"]["name"] : $data["user"]["username"] ?></span> <span
                         style="color:var(--pin-muted);font-size:13px;">@<?= $data["user"]["username"] ?> · <?= $meme['created_at'] ?></span></div>
-                    <button class="btn-pin-ghost p-1" onclick="event.stopPropagation()"><i class="bi bi-three-dots"></i></button>
+                    <div class="post-menu-wrapper" style="position:relative;">
+                      <button class="btn-pin-ghost p-1" onclick="event.stopPropagation(); togglePostMenu(this)" data-meme-id="<?= $meme['user_id'] ?>"><i class="bi bi-three-dots"></i></button>
+                      <div class="post-menu" style="display:none; position:absolute; top:100%; right:0; background:var(--pin-card); border:1px solid var(--pin-border); border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:1000; min-width:160px; overflow:hidden;">
+                        <button class="post-menu-item" onclick="deletePost(<?= $meme['meme_id'] ?>); event.stopPropagation();" style="width:100%; text-align:left; background:none; border:none; padding:12px 16px; color:var(--pin-white); font-size:14px; cursor:pointer; transition:background 0.15s; display:flex; align-items:center; gap:8px;" onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='none'">
+                          <i class="bi bi-trash" style="color:#ff4d6d;"></i> Hapus
+                        </button>
+                      </div>
+                    </div>
                   </div>
                   <p style="font-size:15px;margin-bottom:12px;"><?= $meme['caption'] ?></p>
                   <?php if (isset($meme['image_url']) && !empty($meme['image_url'])): ?>
@@ -135,4 +142,20 @@
       <textarea class="pin-input" name="bio" id="bio" rows="3"><?= $data["user"]["bio"] ?></textarea>
     </div>
   </form>
+</div>
+
+<!-- Delete Post Modal -->
+<div class="pin-modal-overlay" id="deletePostModal">
+  <div class="pin-modal">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <button onclick="closeModal('deletePostModal')" class="btn-pin-ghost p-1"><i class="bi bi-x-lg"></i></button>
+      <h6 style="font-family:'Syne',sans-serif;font-weight:700;margin:0;">Hapus Postingan</h6>
+      <div></div>
+    </div>
+    <p>Apakah Anda yakin ingin menghapus postingan ini? Tindakan ini tidak dapat dibatalkan.</p>
+    <div class="d-flex gap-2 mt-4">
+      <button onclick="closeModal('deletePostModal')" class="btn btn-pin-outline btn-sm">Batal</button>
+      <a href="/meme/delete?meme_id=<?= $meme['meme_id'] ?>" class="btn btn-danger btn-sm">Hapus</a>
+    </div>
+  </div>
 </div>
