@@ -9,7 +9,7 @@
       Thread yang dihapus tidak bisa dikembalikan. Semua komentar dan suka juga akan ikut terhapus.
     </p>
     <div class="d-flex flex-column gap-2">
-      <button class="btn-danger-pin w-100" onclick="confirmDeletePost()">Ya, hapus thread</button>
+      <a href="/meme/<?= $data["meme"]["meme_id"] ?>/delete" class="btn-danger-pin w-100">Ya, hapus thread</a>
       <button class="btn btn-pin-outline w-100" onclick="closeModal('deletePostModal')">Batal</button>
     </div>
   </div>

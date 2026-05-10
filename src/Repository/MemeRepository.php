@@ -34,4 +34,10 @@ class MemeRepository
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function deleteMeme(int $meme_id): bool
+    {
+        $statement = self::$connDB->prepare("DELETE FROM memes WHERE meme_id = ?");
+        return $statement->execute([$meme_id]);
+    }
 }

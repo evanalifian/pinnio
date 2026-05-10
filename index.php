@@ -65,7 +65,7 @@ Router::add("/meme/create", "POST", fn() => $meme->createMeme(), [
 Router::add("/meme/([0-9a-zA-Z]*)", "GET", fn($meme_id) => $meme->viewMeme($meme_id), [
   fn() => AuthMiddleware::isNotAuth()
 ]);
-Router::add("/meme/([0-9a-zA-Z]*)/delete", "GET", fn($meme_id) => $meme->viewMeme($meme_id), [
+Router::add("/meme/([0-9a-zA-Z]*)/delete", "GET", fn($meme_id) => $meme->deleteMeme($meme_id), [
   fn() => AuthMiddleware::isNotAuth()
 ]);
 

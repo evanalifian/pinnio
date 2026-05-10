@@ -61,4 +61,20 @@ class MemeController
             "elements" => ["view_meme/view_meme_modal"]
         ]);
     }
+
+    public function deleteMeme(int $meme_id): void
+    {
+        try {
+            self::$memeService->deleteMeme($meme_id);
+            View::redirect("/home");
+        } catch (ValidationException $e) {
+            $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
+            View::render("signup", [
+                "title" => "Home — PinThread",
+                "user" => $user,
+                "script" => ["home.js"],
+                "error_message" => $e->getMessage()
+            ]);
+        }
+    }
 }
