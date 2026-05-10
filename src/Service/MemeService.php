@@ -5,7 +5,8 @@ namespace App\Pinnio\Service;
 use App\Pinnio\Model\MemeModel;
 use App\Pinnio\Repository\MemeRepository;
 
-class MemeService {
+class MemeService
+{
     private static MemeRepository $memeRepository;
 
     public function __construct(MemeRepository $memeRepository)
@@ -20,12 +21,17 @@ class MemeService {
         } else {
             $memeModel->image_path = null;
         }
-        
+
         return self::$memeRepository->saveMeme($memeModel);
     }
 
     public function getMemes(?int $user_id = null): array
     {
         return self::$memeRepository->getMemes($user_id);
+    }
+
+    public function getMemeById(int $meme_id): array
+    {
+        return self::$memeRepository->getMemeById($meme_id);
     }
 }

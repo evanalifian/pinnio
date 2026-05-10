@@ -19,26 +19,51 @@ $auth = new AuthController();
 $profile = new ProfileController();
 $meme = new MemeController();
 
-Router::add("/", "GET", fn() => $home->landing(), fn() => AuthMiddleware::isAuth());
-Router::add("/home", "GET", fn() => $home->home(), fn() => AuthMiddleware::isNotAuth());
+Router::add("/", "GET", fn() => $home->landing(), [
+  fn() => AuthMiddleware::isAuth()
+]);
+Router::add("/home", "GET", fn() => $home->home(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
 
 
-Router::add("/profile", "GET", fn() => $profile->page(), fn() => AuthMiddleware::isNotAuth());
-Router::add("/profile/update", "POST", fn() => $profile->update(), fn() => AuthMiddleware::isNotAuth());
-Router::add("/profile/delete", "GET", fn() => $profile->delete(), fn() => AuthMiddleware::isNotAuth());
+Router::add("/profile", "GET", fn() => $profile->page(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
+Router::add("/profile/update", "POST", fn() => $profile->update(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
+Router::add("/profile/delete", "GET", fn() => $profile->delete(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
 
 
-Router::add("/signup", "GET", fn() => $signup->page(), fn() => AuthMiddleware::isAuth());
-Router::add("/signup", "POST", fn() => $signup->save(), fn() => AuthMiddleware::isAuth());
+Router::add("/signup", "GET", fn() => $signup->page(), [
+  fn() => AuthMiddleware::isAuth()
+]);
+Router::add("/signup", "POST", fn() => $signup->save(), [
+  fn() => AuthMiddleware::isAuth()
+]);
 
 
-Router::add("/login", "GET", fn() => $auth->page(), fn() => AuthMiddleware::isAuth());
-Router::add("/login", "POST", fn() => $auth->auth(), fn() => AuthMiddleware::isAuth());
+Router::add("/login", "GET", fn() => $auth->page(), [
+  fn() => AuthMiddleware::isAuth()
+]);
+Router::add("/login", "POST", fn() => $auth->auth(), [
+  fn() => AuthMiddleware::isAuth()
+]);
 
 
-Router::add("/logout", "GET", fn() => $auth->logout(), fn() => AuthMiddleware::isNotAuth());
+Router::add("/logout", "GET", fn() => $auth->logout(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
 
 
-Router::add("/meme/create", "POST", fn() => $meme->createMeme(), fn() => AuthMiddleware::isNotAuth());
+Router::add("/meme/create", "POST", fn() => $meme->createMeme(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
+Router::add("/meme/([0-9a-zA-Z]*)", "GET", fn($meme_id) => $meme->viewMeme($meme_id), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
 
 Router::execute();

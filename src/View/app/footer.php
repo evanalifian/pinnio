@@ -1,5 +1,11 @@
 </div>
 
+<?php if (isset($data["elements"])): ?>
+  <?php foreach ($data["elements"] as $element): ?>
+    <?php require_once $element; ?>
+  <?php endforeach ?>
+<?php endif ?>
+
 <!-- Compose Modal -->
 <div class="pin-modal-overlay" id="composeModal">
   <form action="/meme/create" method="POST" enctype="multipart/form-data" class="pin-modal">

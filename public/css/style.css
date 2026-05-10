@@ -342,7 +342,6 @@ textarea.pin-input {
   border-bottom: 1px solid var(--pin-border);
   padding: 20px 0;
   transition: background 0.1s;
-  cursor: pointer;
 }
 .thread-item:hover {
   background: rgba(255, 255, 255, 0.015);

@@ -78,42 +78,55 @@
           </div>
         <?php else: ?>
           <?php foreach ($data["memes"] as $meme): ?>
-            <article class="thread-item fade-up" onclick="window.location='thread.html'" style="animation-delay:0.05s">
+            <a href="/meme/<?= $meme['meme_id'] ?>">
+              <article class="thread-item fade-up" onclick="window.location='thread.html'" style="animation-delay:0.05s">
               <div class="d-flex gap-3">
                 <div
                   style="width:44px;height:44px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">
                   🙂</div>
                 <div class="flex-grow-1">
                   <div class="d-flex justify-content-between align-items-center mb-1">
-                    <div><span style="font-weight:700;font-size:14px;"><?= $data["user"]["name"] ? $data["user"]["name"] : $data["user"]["username"] ?></span> <span
-                        style="color:var(--pin-muted);font-size:13px;">@<?= $data["user"]["username"] ?> · <?= $meme['created_at'] ?></span></div>
-                    <div class="post-menu-wrapper" style="position:relative;">
-                      <button class="btn-pin-ghost p-1" onclick="event.stopPropagation(); togglePostMenu(this)" data-meme-id="<?= $meme['user_id'] ?>"><i class="bi bi-three-dots"></i></button>
-                      <div class="post-menu" style="display:none; position:absolute; top:100%; right:0; background:var(--pin-card); border:1px solid var(--pin-border); border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:1000; min-width:160px; overflow:hidden;">
-                        <button class="post-menu-item" onclick="deletePost(<?= $meme['meme_id'] ?>); event.stopPropagation();" style="width:100%; text-align:left; background:none; border:none; padding:12px 16px; color:var(--pin-white); font-size:14px; cursor:pointer; transition:background 0.15s; display:flex; align-items:center; gap:8px;" onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='none'">
-                          <i class="bi bi-trash" style="color:#ff4d6d;"></i> Hapus
-                        </button>
+                    <div><span style="font-weight:700;font-size:14px;"><?= $data["user"]["name"] ? $data["user"]["name"] : $data["user"]["username"] ?>
+                        </span> <span style="color:var(--pin-muted);font-size:13px;">@<?= $data["user"]["username"] ?> · <?= $meme['created_at'] ?>
+                        </span></div>
+                      <div class="post-menu-wrapper" style="position:relative;">
+                        <button class="btn-pin-ghost p-1" onclick="event.stopPropagation(); togglePostMenu(this)"
+                          data-meme-id="<?= $meme['user_id'] ?>"><i class="bi bi-three-dots"></i></button>
+                        <div class="post-menu"
+                          style="display:none; position:absolute; top:100%; right:0; background:var(--pin-card); border:1px solid var(--pin-border); border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:1000; min-width:160px; overflow:hidden;">
+                          <button class="post-menu-item" onclick="deletePost(<?= $meme['meme_id'] ?>); event.stopPropagation();"
+                            style="width:100%; text-align:left; background:none; border:none; padding:12px 16px; color:var(--pin-white); font-size:14px; cursor:pointer; transition:background 0.15s; display:flex; align-items:center; gap:8px;"
+                            onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='none'">
+                            <i class="bi bi-trash" style="color:#ff4d6d;"></i> Hapus
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <p style="font-size:15px;margin-bottom:12px;"><?= $meme['caption'] ?></p>
-                  <?php if (isset($meme['image_url']) && !empty($meme['image_url'])): ?>
-                    <div style="border-radius:12px;overflow:hidden;margin-bottom:12px;">
-                      <img src="<?= $meme['image_url'] ?>" alt="Meme image" style="width:100%;height:auto;max-height:400px;object-fit:cover;display:block;" />
+                    <p style="font-size:15px;margin-bottom:12px;">
+                      <?= $meme['caption'] ?>
+                    </p>
+                    <?php if (isset($meme['image_url']) && !empty($meme['image_url'])): ?>
+                      <div style="border-radius:12px;overflow:hidden;margin-bottom:12px;">
+                        <img src="<?= $meme['image_url'] ?>" alt="Meme image"
+                          style="width:100%;height:auto;max-height:400px;object-fit:cover;display:block;" />
+                      </div>
+                    <?php endif ?>
+                    <div class="thread-actions">
+                      <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span class="action-count">
+                          <?= $meme['likes'] ?? '0' ?>
+                        </span></button>
+                      <button class="thread-action-btn"><i class="bi bi-chat"></i><span class="action-count">
+                          <?= $meme['comments'] ?? '0' ?>
+                        </span></button>
+                      <button class="thread-action-btn"><i class="bi bi-arrow-repeat"></i><span class="action-count">
+                          <?= $meme['shares'] ?? '0' ?>
+                        </span></button>
+                      <button class="thread-action-btn"><i class="bi bi-send"></i></button>
                     </div>
-                  <?php endif ?>
-                  <div class="thread-actions">
-                    <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span
-                        class="action-count"><?= $meme['likes'] ?? '0' ?></span></button>
-                    <button class="thread-action-btn"><i class="bi bi-chat"></i><span
-                        class="action-count"><?= $meme['comments'] ?? '0' ?></span></button>
-                    <button class="thread-action-btn"><i class="bi bi-arrow-repeat"></i><span
-                        class="action-count"><?= $meme['shares'] ?? '0' ?></span></button>
-                    <button class="thread-action-btn"><i class="bi bi-send"></i></button>
                   </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </a>
           <?php endforeach ?>
         <?php endif ?>
       </div>

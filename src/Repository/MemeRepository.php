@@ -26,4 +26,12 @@ class MemeRepository
         $statement->execute([$user_id]);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function getMemeById(int $meme_id): array
+    {
+        $statement = self::$connDB->prepare("CALL get_meme_by_id(?)");
+        $statement->execute([$meme_id]);
+        $result = $statement->fetch(\PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
