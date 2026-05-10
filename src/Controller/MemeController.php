@@ -57,8 +57,8 @@ class MemeController
             "meme" => $meme,
             "user" => $user,
             "style" => "view_meme.css",
-            "script" => ["meme.js"],
-            "elements" => ["view_meme/view_meme.php"]
+            "script" => ["view_meme.js"],
+            "elements" => ["view_meme/view_meme_modal"]
         ]);
     }
 }

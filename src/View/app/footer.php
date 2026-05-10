@@ -2,7 +2,7 @@
 
 <?php if (isset($data["elements"])): ?>
   <?php foreach ($data["elements"] as $element): ?>
-    <?php require_once $element; ?>
+    <?php require_once __DIR__ . "/" . $element . ".php"; ?>
   <?php endforeach ?>
 <?php endif ?>
 
