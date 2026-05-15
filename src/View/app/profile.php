@@ -131,7 +131,7 @@
 <div class="pin-modal-overlay" id="editProfileModal">
   <form action="/profile/update" method="POST" class="pin-modal">
     <div class="d-flex align-items-center justify-content-between mb-4">
-      <button onclick="closeModal('editProfileModal')" class="btn-pin-ghost p-1"><i class="bi bi-x-lg"></i></button>
+      <button type="button" onclick="closeModal('editProfileModal')" class="btn-pin-ghost p-1"><i class="bi bi-x-lg"></i></button>
       <h6 style="font-family:'Syne',sans-serif;font-weight:700;margin:0;">Edit Profil</h6>
       <button type="submit" class="btn btn-pin btn-sm">Simpan</button>
     </div>

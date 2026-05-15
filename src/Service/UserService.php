@@ -41,8 +41,6 @@ class UserService
   {
     $model = $userModel;
 
-    self::updateValidation($model);
-
     $result = self::$userRepository->findByID($userID)->fetch();
 
     if (!$result) {
@@ -55,13 +53,6 @@ class UserService
       "user_id" => $result["user_id"],
       "email" => $result["email"]
     ];
-  }
-
-  private static function updateValidation(UserModel $userModel): void
-  {
-    if (empty($userModel->username)) {
-      throw new ValidationException("Username tidak boleh kosong");
-    }
   }
 
   public function delete(int $userID): void

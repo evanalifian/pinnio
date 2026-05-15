@@ -42,6 +42,8 @@ class ProfileController
     ]);
   }
 
+  // File: ProfileController.php
+
   public function update(): void
   {
     $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
