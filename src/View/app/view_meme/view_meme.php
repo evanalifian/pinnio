@@ -53,10 +53,10 @@
           <!-- Actions row -->
           <div class="thread-actions pb-3" style="border-bottom:1px solid var(--pin-border);">
             <button class="thread-action-btn" data-action="like" style="font-size:20px; padding:8px 14px;">
-              <i class="bi bi-heart"></i> 142
+              <i class="bi bi-heart"></i> <?= $data["meme"]['likes_count'] ?>
             </button>
             <button class="thread-action-btn" style="font-size:20px; padding:8px 14px;" onclick="focusCommentBox()">
-              <i class="bi bi-chat"></i> 28
+              <i class="bi bi-chat"></i> <?= $data["meme"]['comments_count'] ?>
             </button>
             <button class="thread-action-btn ms-auto" style="font-size:20px; padding:8px 14px;">
               <i class="bi bi-bookmark"></i>
@@ -79,53 +79,62 @@
         </div>
 
         <!-- ===== COMMENTS LIST ===== -->
-        <div id="commentsContainer">
-          <!-- Comment 1 -->
-          <div class="comment-item fade-up" style="animation-delay:0.05s">
-            <div class="d-flex gap-3">
-              <div class="d-flex flex-column align-items-center">
-                <div
-                  style="width:40px;height:40px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">
-                  🚀</div>
-                <div class="comment-thread-line flex-grow-1 mt-2" style="min-height:16px;"></div>
-              </div>
-              <div class="flex-grow-1 pb-2">
-                <div class="d-flex align-items-center justify-content-between mb-1">
-                  <div>
-                    <span style="font-weight:700;font-size:14px;">Dito Pramono</span>
-                    <span style="color:var(--pin-muted);font-size:12px;margin-left:6px;">@ditopram · 5 menit lalu</span>
-                  </div>
-                  <div class="action-menu-wrap">
-                    <button class="btn-pin-ghost p-1" onclick="toggleDropdown('commentDrop1')">
-                      <i class="bi bi-three-dots"></i>
-                    </button>
-                    <div class="dropdown-menu-pin" id="commentDrop1">
-                      <button class="dropdown-item-pin" onclick="copyLink(); closeDropdown('commentDrop1')">
-                        <i class="bi bi-link-45deg"></i> Salin tautan
+        <div id="commentsContainer" class="mt-3">
+          <span>Comments <?= $data["meme"]["comments_count"] ?></span>
+          <?php if (empty($data["meme"]["comments_count"]) || $data["meme"]["comments_count"] == 0): ?>
+            <div role="alert"
+              style="margin-top:16px;display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--pin-border);border-radius:16px;color:var(--pin-muted);background:transparent;">
+              <span style="font-size:18px;line-height:1;">💬</span>
+              <span style="font-size:14px;">Belum ada komentar untuk postingan ini.</span>
+            </div>
+          <?php else: ?>
+            <!-- Comment 1 -->
+            <div class="comment-item fade-up" style="animation-delay:0.05s">
+              <div class="d-flex gap-3">
+                <div class="d-flex flex-column align-items-center">
+                  <div
+                    style="width:40px;height:40px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">
+                    🚀</div>
+                  <div class="comment-thread-line flex-grow-1 mt-2" style="min-height:16px;"></div>
+                </div>
+                <div class="flex-grow-1 pb-2">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
+                    <div>
+                      <span style="font-weight:700;font-size:14px;">Dito Pramono</span>
+                      <span style="color:var(--pin-muted);font-size:12px;margin-left:6px;">@ditopram · 5 menit lalu</span>
+                    </div>
+                    <div class="action-menu-wrap">
+                      <button class="btn-pin-ghost p-1" onclick="toggleDropdown('commentDrop1')">
+                        <i class="bi bi-three-dots"></i>
                       </button>
-                      <button class="dropdown-item-pin"
-                        onclick="replyTo('Dito Pramono'); closeDropdown('commentDrop1')">
-                        <i class="bi bi-reply"></i> Balas
-                      </button>
-                      <div style="height:1px;background:var(--pin-border);margin:4px 0;"></div>
-                      <button class="dropdown-item-pin danger"
-                        onclick="closeDropdown('commentDrop1'); openModal('deleteCommentModal')">
-                        <i class="bi bi-trash3"></i> Hapus komentar
-                      </button>
+                      <div class="dropdown-menu-pin" id="commentDrop1">
+                        <button class="dropdown-item-pin" onclick="copyLink(); closeDropdown('commentDrop1')">
+                          <i class="bi bi-link-45deg"></i> Salin tautan
+                        </button>
+                        <button class="dropdown-item-pin"
+                          onclick="replyTo('Dito Pramono'); closeDropdown('commentDrop1')">
+                          <i class="bi bi-reply"></i> Balas
+                        </button>
+                        <div style="height:1px;background:var(--pin-border);margin:4px 0;"></div>
+                        <button class="dropdown-item-pin danger"
+                          onclick="closeDropdown('commentDrop1'); openModal('deleteCommentModal')">
+                          <i class="bi bi-trash3"></i> Hapus komentar
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <p style="font-size:14px;margin-bottom:10px;">Wah bener banget! Gue juga selalu mulai hari dengan lo-fi,
-                  bikin otak langsung masuk mode fokus 🎧</p>
-                <div class="thread-actions">
-                  <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span
-                      class="action-count">24</span></button>
-                  <button class="thread-action-btn" onclick="replyTo('Dito Pramono')"><i class="bi bi-chat"></i><span
-                      class="action-count">2</span></button>
+                  <p style="font-size:14px;margin-bottom:10px;">Wah bener banget! Gue juga selalu mulai hari dengan lo-fi,
+                    bikin otak langsung masuk mode fokus 🎧</p>
+                  <div class="thread-actions">
+                    <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span
+                        class="action-count">24</span></button>
+                    <button class="thread-action-btn" onclick="replyTo('Dito Pramono')"><i class="bi bi-chat"></i><span
+                        class="action-count">2</span></button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          <?php endif ?>
         </div><!-- end commentsContainer -->
       </div><!-- end feed-col -->
     </div><!-- end flex-grow-1 -->

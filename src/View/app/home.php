@@ -55,12 +55,9 @@
                       <?php endif ?>
                       <div class="thread-actions" onclick="event.stopPropagation()">
                         <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span
-                            class="action-count">142</span></button>
+                            class="action-count"><?= $meme['likes_count'] ?></span></button>
                         <button class="thread-action-btn"><i class="bi bi-chat"></i><span
-                            class="action-count">28</span></button>
-                        <button class="thread-action-btn"><i class="bi bi-arrow-repeat"></i><span
-                            class="action-count">14</span></button>
-                        <button class="thread-action-btn"><i class="bi bi-send"></i></button>
+                            class="action-count"><?= $meme['comments_count'] ?></span></button>
                       </div>
                     </div>
                   </div>
