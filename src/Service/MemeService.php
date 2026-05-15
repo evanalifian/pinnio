@@ -17,6 +17,10 @@ class MemeService
 
     public function createMeme(MemeModel $memeModel, string $file_tmp, string $file_name): bool
     {
+        if (strlen($memeModel->caption) === 0) {
+            throw new ValidationException("Caption tidak boleh kosong.");
+        }
+
         if (!empty($file_tmp)) {
             move_uploaded_file($file_tmp, __DIR__ . "/../../public/uploads/meme_img/" . $file_name);
         } else {

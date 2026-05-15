@@ -38,13 +38,7 @@ class MemeController
             self::$memeService->createMeme(self::$memeModel, $_FILES["meme_img"]["tmp_name"], $_FILES["meme_img"]["name"]);
             View::redirect("/home");
         } catch (ValidationException $e) {
-            $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
-            View::render("signup", [
-                "title" => "Home — PinThread",
-                "user" => $user,
-                "script" => ["home.js"],
-                "error_message" => $e->getMessage()
-            ]);
+            View::redirect("/home");
         }
     }
 
@@ -68,13 +62,7 @@ class MemeController
             self::$memeService->deleteMeme($meme_id);
             View::redirect("/home");
         } catch (ValidationException $e) {
-            $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
-            View::render("signup", [
-                "title" => "Home — PinThread",
-                "user" => $user,
-                "script" => ["home.js"],
-                "error_message" => $e->getMessage()
-            ]);
+            View::redirect("/home");
         }
     }
 }
