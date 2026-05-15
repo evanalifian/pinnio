@@ -65,18 +65,19 @@
         </div>
 
         <!-- ===== ADD COMMENT ===== -->
-        <div class="comment-compose" id="commentSection">
+        <form action="/comment/<?= $data["meme"]["meme_id"] ?>" method="POST" class="comment-compose"
+          id="commentSection">
           <div class="d-flex gap-3 align-items-start">
             <div
               style="width:40px;height:40px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">
               🙂</div>
             <div class="flex-grow-1">
-              <textarea class="pin-input mb-2" placeholder="Tulis komentar kamu..." rows="2"
-                id="commentInput"></textarea>
-              <button class="btn btn-pin btn-sm" onclick="submitComment()">Kirim</button>
+              <textarea class="pin-input mb-2" name="content" id="content" placeholder="Tulis komentar kamu..."
+                rows="2"></textarea>
+              <button type="submit" class="btn btn-pin btn-sm">Kirim</button>
             </div>
           </div>
-        </div>
+        </form>
 
         <!-- ===== COMMENTS LIST ===== -->
         <div id="commentsContainer" class="mt-3">
@@ -88,52 +89,25 @@
               <span style="font-size:14px;">Belum ada komentar untuk postingan ini.</span>
             </div>
           <?php else: ?>
-            <!-- Comment 1 -->
-            <div class="comment-item fade-up" style="animation-delay:0.05s">
-              <div class="d-flex gap-3">
-                <div class="d-flex flex-column align-items-center">
-                  <div
-                    style="width:40px;height:40px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">
-                    🚀</div>
-                  <div class="comment-thread-line flex-grow-1 mt-2" style="min-height:16px;"></div>
-                </div>
-                <div class="flex-grow-1 pb-2">
-                  <div class="d-flex align-items-center justify-content-between mb-1">
-                    <div>
-                      <span style="font-weight:700;font-size:14px;">Dito Pramono</span>
-                      <span style="color:var(--pin-muted);font-size:12px;margin-left:6px;">@ditopram · 5 menit lalu</span>
-                    </div>
-                    <div class="action-menu-wrap">
-                      <button class="btn-pin-ghost p-1" onclick="toggleDropdown('commentDrop1')">
-                        <i class="bi bi-three-dots"></i>
-                      </button>
-                      <div class="dropdown-menu-pin" id="commentDrop1">
-                        <button class="dropdown-item-pin" onclick="copyLink(); closeDropdown('commentDrop1')">
-                          <i class="bi bi-link-45deg"></i> Salin tautan
-                        </button>
-                        <button class="dropdown-item-pin"
-                          onclick="replyTo('Dito Pramono'); closeDropdown('commentDrop1')">
-                          <i class="bi bi-reply"></i> Balas
-                        </button>
-                        <div style="height:1px;background:var(--pin-border);margin:4px 0;"></div>
-                        <button class="dropdown-item-pin danger"
-                          onclick="closeDropdown('commentDrop1'); openModal('deleteCommentModal')">
-                          <i class="bi bi-trash3"></i> Hapus komentar
-                        </button>
-                      </div>
-                    </div>
+            <?php foreach ($data["comments"] as $comment): ?>
+              <div class="comment-item fade-up" style="animation-delay:0.05s">
+                <div class="d-flex gap-3">
+                  <div class="d-flex flex-column align-items-center">
+                    <div
+                      style="width:40px;height:40px;border-radius:50%;background:var(--pin-card);border:1.5px solid var(--pin-border);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">
+                      🚀</div>
+                    <div class="comment-thread-line flex-grow-1 mt-2" style="min-height:16px;"></div>
                   </div>
-                  <p style="font-size:14px;margin-bottom:10px;">Wah bener banget! Gue juga selalu mulai hari dengan lo-fi,
-                    bikin otak langsung masuk mode fokus 🎧</p>
-                  <div class="thread-actions">
-                    <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span
-                        class="action-count">24</span></button>
-                    <button class="thread-action-btn" onclick="replyTo('Dito Pramono')"><i class="bi bi-chat"></i><span
-                        class="action-count">2</span></button>
+                  <div class="flex-grow-1 pb-2">
+                    <div class="d-flex align-items-center justify-content-between mb-1">
+                      <span style="color:var(--pin-muted);font-size:12px;">@<?= $comment["username"] ?> · 5 menit lalu
+                      </span>
+                    </div>
+                    <p style="font-size:14px;margin-bottom:10px;"><?= $comment["content"] ?></p>
                   </div>
                 </div>
               </div>
-            </div>
+            <?php endforeach ?>
           <?php endif ?>
         </div><!-- end commentsContainer -->
       </div><!-- end feed-col -->

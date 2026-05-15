@@ -2,6 +2,7 @@
 
 use App\Pinnio\Config\Router;
 use App\Pinnio\Controller\AuthController;
+use App\Pinnio\Controller\CommentController;
 use App\Pinnio\Controller\HomeController;
 use App\Pinnio\Controller\MemeController;
 use App\Pinnio\Controller\ProfileController;
@@ -18,6 +19,7 @@ $signup = new SignupController();
 $auth = new AuthController();
 $profile = new ProfileController();
 $meme = new MemeController();
+$comment = new CommentController();
 
 Router::add("/", "GET", fn() => $home->landing(), [
   fn() => AuthMiddleware::isAuth()
@@ -69,6 +71,10 @@ Router::add("/meme/([0-9a-zA-Z]*)/delete", "GET", fn($meme_id) => $meme->deleteM
   fn() => AuthMiddleware::isNotAuth()
 ]);
 Router::add("/meme/([0-9a-zA-Z]*)/edit", "GET", fn($meme_id) => $meme->editMeme($meme_id), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
+
+Router::add("/comment/([0-9a-zA-Z]*)", "POST", fn($meme_id) => $comment->saveComment($meme_id), [
   fn() => AuthMiddleware::isNotAuth()
 ]);
 

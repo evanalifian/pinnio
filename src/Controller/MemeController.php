@@ -6,8 +6,10 @@ use App\Pinnio\Config\Database;
 use App\Pinnio\Config\View;
 use App\Pinnio\Exception\ValidationException;
 use App\Pinnio\Model\MemeModel;
+use App\Pinnio\Repository\CommentRepository;
 use App\Pinnio\Repository\MemeRepository;
 use App\Pinnio\Repository\UserRepository;
+use App\Pinnio\Service\CommentService;
 use App\Pinnio\Service\MemeService;
 use App\Pinnio\Service\UserService;
 
@@ -15,6 +17,7 @@ class MemeController
 {
     private static MemeService $memeService;
     private static UserService $userService;
+    private static CommentService $commentService;
     private static MemeModel $memeModel;
 
     public function __construct()
@@ -22,10 +25,12 @@ class MemeController
         $connDB = Database::connect();
         $memeRepository = new MemeRepository($connDB);
         $userRepository = new UserRepository($connDB);
+        $commentRepository = new CommentRepository($connDB);
 
         self::$memeModel = new MemeModel();
         self::$memeService = new MemeService($memeRepository);
         self::$userService = new UserService($userRepository);
+        self::$commentService = new CommentService($commentRepository);
     }
 
     public function createMeme(): void
@@ -48,8 +53,9 @@ class MemeController
         $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
         View::app("view_meme/view_meme", [
             "title" => "Meme — PinThread",
-            "meme" => $meme,
             "user" => $user,
+            "meme" => $meme,
+            "comments" => self::$commentService->getCommentsByMemeId($meme_id),
             "style" => "view_meme.css",
             "script" => ["view_meme.js"],
             "elements" => ["view_meme/view_meme_modal"]

@@ -113,15 +113,11 @@
                     <?php endif ?>
                     <div class="thread-actions">
                       <button class="thread-action-btn" data-action="like"><i class="bi bi-heart"></i><span class="action-count">
-                          <?= $meme['likes'] ?? '0' ?>
+                          <?= $meme['likes_count'] ?? '0' ?>
                         </span></button>
                       <button class="thread-action-btn"><i class="bi bi-chat"></i><span class="action-count">
-                          <?= $meme['comments'] ?? '0' ?>
+                          <?= $meme['comments_count'] ?? '0' ?>
                         </span></button>
-                      <button class="thread-action-btn"><i class="bi bi-arrow-repeat"></i><span class="action-count">
-                          <?= $meme['shares'] ?? '0' ?>
-                        </span></button>
-                      <button class="thread-action-btn"><i class="bi bi-send"></i></button>
                     </div>
                   </div>
                 </div>
