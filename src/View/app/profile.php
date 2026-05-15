@@ -136,10 +136,6 @@
       <button type="submit" class="btn btn-pin btn-sm">Simpan</button>
     </div>
     <div class="mb-3">
-      <label for="username" class="form-label-pin">Username</label>
-      <input type="text" name="username" id="username" class="pin-input" value="<?= $data["user"]["username"] ?>">
-    </div>
-    <div class="mb-3">
       <label for="name" class="form-label-pin">Nama</label>
       <input type="text" name="name" id="name" class="pin-input" value="<?= $data["user"]["name"] ?>">
     </div>

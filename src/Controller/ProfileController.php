@@ -48,7 +48,6 @@ class ProfileController
     $memes = self::$memeService->getMemes($_SESSION['auth']["user_id"]);
 
     try {
-      self::$userModel->username = $_POST["username"];
       self::$userModel->name = $_POST["name"] ?? null; // Gunakan null coalescing
       self::$userModel->bio = $_POST["bio"] ?? null;
 

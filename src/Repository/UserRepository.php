@@ -37,8 +37,8 @@ class UserRepository
 
   public function update(UserModel $userModel, int $userID): \PDOStatement
   {
-    $statement = self::$connDB->prepare("UPDATE users SET name = ?, username = ?, bio = ? WHERE user_id = ?");
-    $statement->execute([$userModel->name, $userModel->username, $userModel->bio, $userID]);
+    $statement = self::$connDB->prepare("UPDATE users SET name = ?, bio = ? WHERE user_id = ?");
+    $statement->execute([$userModel->name, $userModel->bio, $userID]);
     return $statement;
   }
 
