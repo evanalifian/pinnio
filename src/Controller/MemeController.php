@@ -56,6 +56,20 @@ class MemeController
         ]);
     }
 
+    public function editMeme(int $meme_id): void
+    {
+        $meme = self::$memeService->getMemeById($meme_id);
+        $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
+        View::app("view_meme/edit", [
+            "title" => "Meme — PinThread",
+            "meme" => $meme,
+            "user" => $user,
+            "style" => "view_meme.css",
+            "script" => ["view_meme.js"],
+            "elements" => ["view_meme/view_meme_modal"]
+        ]);
+    }
+
     public function deleteMeme(int $meme_id): void
     {
         try {
