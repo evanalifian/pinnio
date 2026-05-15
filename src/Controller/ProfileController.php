@@ -46,16 +46,17 @@ class ProfileController
   {
     $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
     $memes = self::$memeService->getMemes($_SESSION['auth']["user_id"]);
-    
+
     try {
       self::$userModel->username = $_POST["username"];
-      self::$userModel->name = $_POST["name"];
-      self::$userModel->bio = $_POST["bio"];
+      self::$userModel->name = $_POST["name"] ?? null; // Gunakan null coalescing
+      self::$userModel->bio = $_POST["bio"] ?? null;
 
       self::$userService->update(self::$userModel, $_SESSION['auth']["user_id"]);
       View::redirect("/profile");
     } catch (ValidationException $e) {
-      View::render("profile", [
+      // PERBAIKAN: Gunakan View::app, bukan View::render
+      View::app("profile", [
         "title" => "Profil — PinThread",
         "style" => "profile.css",
         "script" => ["profile.js"],
