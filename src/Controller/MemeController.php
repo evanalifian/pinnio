@@ -70,10 +70,21 @@ class MemeController
             "title" => "Meme — PinThread",
             "meme" => $meme,
             "user" => $user,
-            "style" => "view_meme.css",
-            "script" => ["view_meme.js"],
-            "elements" => ["view_meme/view_meme_modal"]
+            "style" => "edit_meme.css",
+            "script" => ["edit_meme.js"]
         ]);
+    }
+
+    public function updateMeme(int $meme_id): void
+    {
+        try {
+            self::$memeModel->caption = $_POST["caption"] ?? null;
+
+            self::$memeService->updateMeme($meme_id, self::$memeModel->caption);
+            View::redirect("/meme/$meme_id");
+        } catch (ValidationException $e) {
+            View::redirect("/meme/$meme_id/edit");
+        }
     }
 
     public function deleteMeme(int $meme_id): void

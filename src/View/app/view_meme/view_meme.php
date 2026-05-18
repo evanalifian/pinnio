@@ -100,17 +100,28 @@
                   </div>
                   <div class="flex-grow-1 pb-2">
                     <div class="d-flex align-items-center justify-content-between mb-1">
-                      <span style="color:var(--pin-muted);font-size:12px;">@<?= $comment["username"] ?> · 5 menit lalu
-                      </span>
+                      <span style="color:var(--pin-muted);font-size:12px;">@<?= $comment["username"] ?> ·
+                        <?= $comment["created_at"] ?></span>
+                      <div class="action-menu-wrap">
+                        <button class="btn-pin-ghost p-1" onclick="toggleDropdown('commentDrop1')">
+                          <i class="bi bi-three-dots"></i>
+                        </button>
+                        <div class="dropdown-menu-pin" id="commentDrop1">
+                          <div style="height:1px;background:var(--pin-border);margin:4px 0;"></div>
+                          <button class="dropdown-item-pin danger"
+                            onclick="closeDropdown('commentDrop1'); openModal('deleteCommentModal')">
+                            <i class="bi bi-trash3"></i> Hapus komentar
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     <p style="font-size:14px;margin-bottom:10px;"><?= $comment["content"] ?></p>
                   </div>
                 </div>
-              </div>
+              </div><!-- end commentsContainer -->
             <?php endforeach ?>
           <?php endif ?>
-        </div><!-- end commentsContainer -->
-      </div><!-- end feed-col -->
-    </div><!-- end flex-grow-1 -->
+        </div><!-- end feed-col -->
+      </div><!-- end flex-grow-1 -->
+    </div>
   </div>
-</div>

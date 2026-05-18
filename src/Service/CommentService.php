@@ -23,4 +23,14 @@ class CommentService
   {
     return self::$commentRepository->getCommentsByMemeId($meme_id);
   }
+
+  public function deleteCommentByID(int $comment_id): bool
+  {
+    return self::$commentRepository->deleteCommentByID($comment_id);
+  }
+
+  public function getCommentByID(int $comment_id): array
+  {
+    return self::$commentRepository->getCommentByID($comment_id);
+  }
 }

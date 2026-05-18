@@ -50,4 +50,13 @@ class MemeService
         }
         return self::$memeRepository->deleteMeme($meme_id);
     }
+
+    public function updateMeme(int $meme_id, string $caption): bool
+    {
+        if (strlen($caption) === 0) {
+            throw new ValidationException("Caption tidak boleh kosong.");
+        }
+
+        return self::$memeRepository->updateMeme($meme_id, $caption);
+    }
 }

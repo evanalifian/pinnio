@@ -73,8 +73,15 @@ Router::add("/meme/([0-9a-zA-Z]*)/delete", "GET", fn($meme_id) => $meme->deleteM
 Router::add("/meme/([0-9a-zA-Z]*)/edit", "GET", fn($meme_id) => $meme->editMeme($meme_id), [
   fn() => AuthMiddleware::isNotAuth()
 ]);
+Router::add("/meme/([0-9a-zA-Z]*)/edit", "POST", fn($meme_id) => $meme->updateMeme($meme_id), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
+
 
 Router::add("/comment/([0-9a-zA-Z]*)", "POST", fn($meme_id) => $comment->saveComment($meme_id), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
+Router::add("/comment/([0-9a-zA-Z]*)/delete", "GET", fn($comment_id) => $comment->deleteComment($comment_id), [
   fn() => AuthMiddleware::isNotAuth()
 ]);
 

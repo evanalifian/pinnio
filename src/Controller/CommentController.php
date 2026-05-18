@@ -38,4 +38,24 @@ class CommentController
       View::redirect("/meme/$meme_id");
     }
   }
+
+  public function deleteComment($comment_id): void
+  {
+    // Ambil meme_id dari query string (?meme_id=xxx)
+    $meme_id = $_GET["meme_id"] ?? null;
+
+    try {
+      // Lakukan penghapusan
+      self::$commentService->deleteCommentByID($comment_id);
+
+      // Jika ada meme_id, balik ke postingan tersebut, jika tidak ada balik ke home
+      if ($meme_id) {
+        View::redirect("/meme/" . $meme_id);
+      } else {
+        View::redirect("/home");
+      }
+    } catch (\Exception $e) {
+      View::redirect("/home");
+    }
+  }
 }

@@ -26,7 +26,7 @@
       Komentar yang dihapus tidak bisa dikembalikan dan tidak akan terlihat oleh siapapun.
     </p>
     <div class="d-flex flex-column gap-2">
-      <button class="btn-danger-pin w-100" onclick="confirmDeleteComment()">Ya, hapus komentar</button>
+      <a href="/comment/<?= $comment["comment_id"] ?>/delete" class="btn-danger-pin w-100" onclick="confirmDeleteComment()">Ya, hapus komentar</a>
       <button class="btn btn-pin-outline w-100" onclick="closeModal('deleteCommentModal')">Batal</button>
     </div>
   </div>

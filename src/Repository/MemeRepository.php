@@ -40,4 +40,10 @@ class MemeRepository
         $statement = self::$connDB->prepare("DELETE FROM memes WHERE meme_id = ?");
         return $statement->execute([$meme_id]);
     }
+
+    public function updateMeme(int $meme_id, string $caption): bool
+    {
+        $statement = self::$connDB->prepare("UPDATE memes SET caption = ? WHERE meme_id = ?");
+        return $statement->execute([$caption, $meme_id]);
+    }
 }
