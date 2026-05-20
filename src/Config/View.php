@@ -13,6 +13,19 @@ class View
 
   public static function app(string $src_path, array $data = []): void
   {
+    $data["navigation"] = [
+      [
+        "name" => "Home",
+        "path" => "/home",
+        "icon" => "house-fill"
+      ],
+      [
+        "name" => "Profile",
+        "path" => "/profile",
+        "icon" => "person-fill"
+      ]
+    ];
+
     require_once __DIR__ . "/../View/app/header.php";
     require_once __DIR__ . "/../View/app/$src_path.php";
     require_once __DIR__ . "/../View/app/footer.php";

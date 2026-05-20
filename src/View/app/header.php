@@ -23,10 +23,10 @@
         <div class="sidebar-logo"><i class="bi bi-pin-angle-fill" style="color:var(--pin-yellow)"></i>
           Pin<span>Thread</span></div>
         <ul class="sidebar-nav">
-          <li><a href="/home" class="active"><span class="nav-icon"><i class="bi bi-house-fill"></i></span> Home</a>
-          </li>
-          <li><a href="/explore"><span class="nav-icon"><i class="bi bi-compass"></i></span> Explore</a></li>
-          <li><a href="/profile"><span class="nav-icon"><i class="bi bi-person"></i></span> Profil</a></li>
+          <?php foreach ($data["navigation"] as $nav): ?>
+            <li><a href="<?= $nav["path"] ?>" <?= ($_SERVER['REQUEST_URI'] === $nav["path"]) ? 'class="active"' : null ?>><span class="nav-icon"><i class="bi bi-<?= $nav["icon"] ?>"></i></span> <?= $nav["name"] ?></a>
+            </li>
+          <?php endforeach ?>
         </ul>
         <div class="sidebar-footer">
           <button class="btn btn-pin w-100 mb-3" onclick="openModal('composeModal')">
