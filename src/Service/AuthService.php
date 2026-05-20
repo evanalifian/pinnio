@@ -24,11 +24,11 @@ class AuthService
     $result = self::$userRepository->findByUsername($model->username)->fetch();
 
     if (!$result) {
-      throw new ValidationException("Username does not exist");
+      throw new ValidationException("Username gak ada yang cocok");
     }
 
     if (!password_verify($model->password, $result["password"])) {
-      throw new ValidationException("Password incorrect");
+      throw new ValidationException("Password salah");
     }
 
     $_SESSION["auth"] = [
@@ -39,8 +39,14 @@ class AuthService
 
   private static function authValidation(AuthModel $authModel): void
   {
-    if (strlen($authModel->username) === 0 || strlen($authModel->password) === 0) {
-      throw new ValidationException("Username and Password can noT be empty");
+    require_once __DIR__ . "/../utils.php";
+
+    if (isInputEmpty($authModel->username)) {
+      throw new ValidationException("Username gak boleh kosong");
+    }
+
+    if (isInputEmpty($authModel->password)) {
+      throw new ValidationException("Password gak boleh kosong");
     }
   }
 }

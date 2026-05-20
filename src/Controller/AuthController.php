@@ -13,6 +13,11 @@ class AuthController
 {
   private static AuthModel $authModel;
   private static AuthService $authService;
+  private static array $display = [
+    "title" => "Log in",
+    "style" => "login.css",
+    "script" => ["login.js"]
+  ];
 
   public function __construct()
   {
@@ -25,11 +30,7 @@ class AuthController
 
   public function page(): void
   {
-    View::render("login", [
-      "title" => "Log in",
-      "style" => "login.css",
-      "script" => ["login.js"]
-    ]);
+    View::render("login", self::$display);
   }
 
   public function auth(): void
@@ -41,12 +42,8 @@ class AuthController
       self::$authService->auth(self::$authModel);
       View::redirect("/home");
     } catch (ValidationException $e) {
-      View::render("login", [
-        "title" => "Log in",
-        "style" => "login.css",
-        "script" => ["login.js"],
-        "error_message" => $e->getMessage()
-      ]);
+      self::$display["error_message"] = $e->getMessage();
+      View::render("login", self::$display);
     }
   }
 

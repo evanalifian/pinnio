@@ -1,4 +1,4 @@
-<script src="public/js/bootstrap.bundle.min.js"></script>
+<script src="/public/js/bootstrap.bundle.min.js"></script>
 <script src="/public/js/app.js"></script>
 <?php if (isset($data["script"])): ?>
   <?php foreach ($data["script"] as $script): ?>

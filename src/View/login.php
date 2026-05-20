@@ -14,6 +14,13 @@
     <div class="auth-box">
       <h1 class="auth-title">Selamat datang kembali</h1>
       <p class="auth-sub">Masuk untuk melanjutkan perjalananmu.</p>
+      <?php if (!empty($data["error_message"])): ?>
+        <div
+          style="background-color:#fee;border:1px solid #fcc;color:#c33;padding:12px;border-radius:6px;margin-bottom:20px;font-size:14px;">
+          <i class="bi bi-exclamation-circle" style="margin-right:8px;"></i>
+          <?php echo htmlspecialchars($data["error_message"]); ?>
+        </div>
+      <?php endif; ?>
       <form action="/login" method="POST">
         <div class="mb-4">
           <label class="form-label-pin" for="loginId">username</label>
@@ -26,7 +33,8 @@
           <label class="form-label-pin" for="loginPass">Kata sandi</label>
           <div class="input-group-pin">
             <i class="bi bi-lock input-icon"></i>
-            <input type="password" class="pin-input" placeholder="••••••••" id="loginPass" name="password" style="padding-right:44px;">
+            <input type="password" class="pin-input" placeholder="••••••••" id="loginPass" name="password"
+              style="padding-right:44px;">
             <button type="button" class="input-toggle" onclick="togglePass()">
               <i class="bi bi-eye" id="passIcon"></i>
             </button>

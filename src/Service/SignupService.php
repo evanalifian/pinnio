@@ -18,14 +18,13 @@ class SignupService
   public function save(SignupModel $signupModel): void
   {
     $model = $signupModel;
-
-    self::signupValidation($model);
-
     $result = self::$userRepository->findByUsername($model->username)->fetch();
 
     if ($result) {
-      throw new ValidationException("User already exist");
+      throw new ValidationException("User sudah ada, silakan pilih username lain");
     }
+
+    self::signupValidation($model);
 
     $model->password = password_hash($model->password, PASSWORD_BCRYPT);
     self::$userRepository->save($model);
@@ -33,8 +32,18 @@ class SignupService
 
   private static function signupValidation(SignupModel $signupModel): void
   {
-    if (strlen($signupModel->username) === 0 || strlen($signupModel->email) === 0 || strlen($signupModel->password) === 0) {
-      throw new ValidationException("Name, Username, and Password can noT be empty");
+    require_once __DIR__ . "/../utils.php";
+
+    if (isInputEmpty($signupModel->username)) {
+      throw new ValidationException("Username tidak boleh kosong");
+    }
+
+    if (isInputEmpty($signupModel->email)) {
+      throw new ValidationException("Email tidak boleh kosong");
+    }
+
+    if (isInputEmpty($signupModel->password)) {
+      throw new ValidationException("Kata sandi tidak boleh kosong");
     }
   }
 }

@@ -13,6 +13,11 @@ class SignupController
 {
   static private SignupModel $signupModel;
   static private SignupService $signupService;
+  static private array $display = [
+    "title" => "Sign up",
+    "style" => "signup.css",
+    "script" => ["signup.js"]
+  ];
 
   public function __construct()
   {
@@ -25,11 +30,7 @@ class SignupController
 
   public function page(): void
   {
-    View::render("signup", [
-      "title" => "Sign up",
-      "style" => "signup.css",
-      "script" => ["signup.js"]
-    ]);
+    View::render("signup", self::$display);
   }
 
   public function save(): void
@@ -42,12 +43,8 @@ class SignupController
       self::$signupService->save(self::$signupModel);
       View::redirect("/login");
     } catch (ValidationException $e) {
-      View::render("signup", [
-        "title" => "Sign up",
-        "style" => "signup.css",
-        "script" => ["signup.js"],
-        "error_message" => $e->getMessage()
-      ]);
+      self::$display["error_message"] = $e->getMessage();
+      View::render("signup", self::$display);
     }
   }
 }

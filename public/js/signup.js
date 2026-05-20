@@ -38,12 +38,3 @@ function checkStrength(val) {
   label.style.color = l.c === "transparent" ? "var(--pin-muted)" : l.c;
   label.textContent = l.t;
 }
-function handleRegister(e) {
-  e.preventDefault();
-  if (!document.getElementById("terms").checked) {
-    showToast("Setujui syarat & ketentuan terlebih dahulu");
-    return;
-  }
-  showToast("Akun berhasil dibuat!", "success");
-  setTimeout(() => (window.location.href = "home.html"), 1200);
-}

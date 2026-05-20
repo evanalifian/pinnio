@@ -6,7 +6,6 @@
       <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:36px;letter-spacing:-1px;line-height:1.1;">
         Mulai dalam<br><span style="color:var(--pin-yellow)">3 langkah</span>
       </div>
-      <p style="color:var(--pin-muted);font-size:14px;margin-top:12px;">Cepat dan gratis.</p>
     </div>
     <ul class="steps-list">
       <li>
@@ -38,6 +37,13 @@
     <div class="auth-box">
       <h1 class="auth-title">Buat akun baru</h1>
       <p class="auth-sub">Bergabung dengan komunitas PinThread hari ini.</p>
+      <?php if (!empty($data["error_message"])): ?>
+        <div
+          style="background-color:#fee;border:1px solid #fcc;color:#c33;padding:12px;border-radius:6px;margin-bottom:20px;font-size:14px;">
+          <i class="bi bi-exclamation-circle"
+            style="margin-right:8px;"></i><?php echo htmlspecialchars($data["error_message"]); ?>
+        </div>
+      <?php endif; ?>
       <form action="/signup" method="POST">
         <div class="mb-3">
           <label class="form-label-pin" for="username">Username</label>
