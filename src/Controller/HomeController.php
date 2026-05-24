@@ -12,10 +12,10 @@ use App\Pinnio\Service\UserService;
 
 class HomeController
 {
-  private static UserModel $userModel;
-  private static UserService $userService;
+  protected static UserModel $userModel;
+  protected static UserService $userService;
 
-  private static MemeService $memeService;
+  protected static MemeService $memeService;
 
   public function __construct()
   {

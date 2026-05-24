@@ -6,6 +6,7 @@ use App\Pinnio\Controller\CommentController;
 use App\Pinnio\Controller\HomeController;
 use App\Pinnio\Controller\MemeController;
 use App\Pinnio\Controller\ProfileController;
+use App\Pinnio\Controller\SettingController;
 use App\Pinnio\Controller\SignupController;
 use App\Pinnio\Middleware\AuthMiddleware;
 
@@ -20,11 +21,17 @@ $auth = new AuthController();
 $profile = new ProfileController();
 $meme = new MemeController();
 $comment = new CommentController();
+$setting = new SettingController();
 
 Router::add("/", "GET", fn() => $home->landing(), [
   fn() => AuthMiddleware::isAuth()
 ]);
 Router::add("/home", "GET", fn() => $home->home(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
+
+
+Router::add("/pengaturan", "GET", fn() => $setting->index(), [
   fn() => AuthMiddleware::isNotAuth()
 ]);
 

@@ -23,6 +23,11 @@ class View
         "name" => "Profile",
         "path" => "/profile",
         "icon" => "person-fill"
+      ],
+      [
+        "name" => "Pengaturan",
+        "path" => "/pengaturan",
+        "icon" => "gear-fill"
       ]
     ];
 
