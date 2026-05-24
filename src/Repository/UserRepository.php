@@ -48,4 +48,11 @@ class UserRepository
     $statement->execute([$userID]);
     return $statement;
   }
+
+  public function updatePassword(int $userID, string $new_password): \PDOStatement
+  {
+    $statement = self::$connDB->prepare("UPDATE users SET password = ? WHERE user_id = ?");
+    $statement->execute([$new_password, $userID]);
+    return $statement;
+  }
 }

@@ -45,6 +45,9 @@ Router::add("/profile/update", "POST", fn() => $profile->update(), [
 Router::add("/profile/delete", "GET", fn() => $profile->delete(), [
   fn() => AuthMiddleware::isNotAuth()
 ]);
+Router::add("/profile/update-password", "POST", fn() => $profile->updatePassword(), [
+  fn() => AuthMiddleware::isNotAuth()
+]);
 
 
 Router::add("/signup", "GET", fn() => $signup->page(), [

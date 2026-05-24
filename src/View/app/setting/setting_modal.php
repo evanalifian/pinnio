@@ -20,11 +20,11 @@
 <!-- PASSWORD MODAL -->
 <div class="pin-modal-overlay" id="passwordModal">
 
-  <div class="pin-modal">
+  <form action="/profile/update-password" method="POST" class="pin-modal">
 
     <div class="d-flex align-items-center justify-content-between mb-4">
 
-      <button onclick="closeModal('passwordModal')" class="btn-pin-ghost p-1">
+      <button type="button" onclick="closeModal('passwordModal')" class="btn-pin-ghost p-1">
 
         <i class="bi bi-x-lg"></i>
 
@@ -38,7 +38,7 @@
         Ubah Password
       </h6>
 
-      <button class="btn btn-pin btn-sm" onclick="savePassword()">
+      <button type="submit" class="btn btn-pin btn-sm">
 
         Simpan
 
@@ -52,7 +52,7 @@
         Password Lama
       </label>
 
-      <input type="password" class="pin-input" placeholder="Masukkan password lama">
+      <input type="password" name="old_password" class="pin-input" placeholder="Masukkan password lama">
 
     </div>
 
@@ -62,7 +62,7 @@
         Password Baru
       </label>
 
-      <input type="password" class="pin-input" placeholder="Masukkan password baru">
+      <input type="password" name="new_password" class="pin-input" placeholder="Masukkan password baru">
 
     </div>
 
@@ -72,10 +72,10 @@
         Confirm Password
       </label>
 
-      <input type="password" class="pin-input" placeholder="Konfirmasi password">
+      <input type="password" name="confirm_password" class="pin-input" placeholder="Konfirmasi password">
 
     </div>
 
-  </div>
+  </form>
 
 </div>

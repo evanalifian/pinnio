@@ -61,4 +61,26 @@ class UserService
     session_destroy();
     session_unset();
   }
+
+  public function updatePassword(UserModel $userModel, string $old_password, string $new_password, string $confirm_password): void
+  {
+    require_once __DIR__ . "/../utils.php";
+
+    if (isInputEmpty($new_password) || isInputEmpty($confirm_password)) {
+      throw new ValidationException("Input password tidak boleh kosong!");
+    }
+
+    $res = self::getUserById($userModel->user_id);
+
+    if (!password_verify($old_password, $res["password"])) {
+      throw new ValidationException("Password lama salah!");
+    }
+
+    if ($new_password !== $confirm_password) {
+      throw new ValidationException("Konfirmasi password tidak sama");
+    }
+
+    $userModel->password = password_hash($new_password, PASSWORD_BCRYPT);
+    self::$userRepository->updatePassword($userModel->user_id, $userModel->password);
+  }
 }

@@ -12,7 +12,6 @@ class SettingController extends HomeController
     View::app("setting/setting", [
       "title" => "Pengaturan",
       "user" => $user,
-      "script" => ["setting.js"],
       "elements" => ["setting/setting_modal"]
     ]);
   }

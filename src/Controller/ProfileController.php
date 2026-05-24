@@ -32,7 +32,7 @@ class ProfileController
   {
     $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
     $memes = self::$memeService->getMemes($_SESSION['auth']["user_id"]);
-    
+
     View::app("profile", [
       "title" => "Profil — PinThread",
       "style" => "profile.css",
@@ -72,7 +72,7 @@ class ProfileController
   {
     $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
     $memes = self::$memeService->getMemes($_SESSION['auth']["user_id"]);
-    
+
     try {
       self::$userService->delete($_SESSION['auth']["user_id"]);
       View::redirect("/");
@@ -83,6 +83,28 @@ class ProfileController
         "script" => ["profile.js"],
         "user" => $user,
         "memes" => $memes,
+        "error_message" => $e->getMessage()
+      ]);
+    }
+  }
+
+  public function updatePassword(): void
+  {
+    try {
+      self::$userModel->user_id = $_SESSION["auth"]["user_id"];
+      $old_password = $_POST["old_password"];
+      $new_password = $_POST["new_password"];
+      $confirm_password = $_POST["confirm_password"];
+
+      self::$userService->updatePassword(self::$userModel, $old_password, $new_password, $confirm_password);
+      View::redirect("/logout");
+    } catch (ValidationException $e) {
+      $user = self::$userService->getUserById($_SESSION['auth']["user_id"]);
+      View::app("setting/setting", [
+        "title" => "Pengaturan",
+        "user" => $user,
+        "script" => ["setting.js"],
+        "elements" => ["setting/setting_modal"],
         "error_message" => $e->getMessage()
       ]);
     }
