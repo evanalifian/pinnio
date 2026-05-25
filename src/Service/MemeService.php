@@ -5,6 +5,7 @@ namespace App\Pinnio\Service;
 use App\Pinnio\Exception\ValidationException;
 use App\Pinnio\Model\MemeModel;
 use App\Pinnio\Repository\MemeRepository;
+use App\Pinnio\Utils\CensorString;
 
 class MemeService
 {
@@ -20,6 +21,9 @@ class MemeService
         if (strlen($memeModel->caption) === 0) {
             throw new ValidationException("Caption tidak boleh kosong.");
         }
+
+        // ===== PROSES SENSOR CAPTION BARU =====
+        $memeModel->caption = CensorString::filter($memeModel->caption);
 
         if (!empty($file_tmp)) {
             move_uploaded_file($file_tmp, __DIR__ . "/../../public/uploads/meme_img/" . $file_name);
@@ -57,6 +61,9 @@ class MemeService
             throw new ValidationException("Caption tidak boleh kosong.");
         }
 
-        return self::$memeRepository->updateMeme($meme_id, $caption);
+        // ===== PROSES SENSOR EDIT CAPTION =====
+        $censoredCaption = CensorString::filter($caption);
+
+        return self::$memeRepository->updateMeme($meme_id, $censoredCaption);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Pinnio\Service;
 
 use App\Pinnio\Model\CommentModel;
 use App\Pinnio\Repository\CommentRepository;
+use App\Pinnio\Utils\CensorString;
 
 class CommentService
 {
@@ -16,6 +17,9 @@ class CommentService
 
   public function saveComment(CommentModel $commentModel): bool
   {
+    // ===== PROSES SENSOR ISI KOMENTAR =====
+    $commentModel->content = CensorString::filter($commentModel->content);
+
     return self::$commentRepository->saveComment($commentModel);
   }
 
